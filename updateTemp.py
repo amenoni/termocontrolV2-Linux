@@ -4,6 +4,7 @@ import memcache
 
 #Save the current temp sended by the arduino in a key named "CurrentTemp" in the memcached service
 #usage: updateTemp.py XX
+#to get the value mc.get('CurrentTemp')
 
 CurrentTemp = sys.argv[1]
 

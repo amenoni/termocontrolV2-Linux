@@ -3,6 +3,10 @@
 import socket
 import json
 
+#usage
+#from sendMailbox import sendMailbox
+#sendMailbox('message')
+
 def sendMailbox(msg):
     m = {'command':'raw'}
     m['data'] = str(msg)
@@ -10,4 +14,3 @@ def sendMailbox(msg):
     s.connect(('127.0.0.1', 5700))
     s.sendall(json.dumps(m))
     s.close()
-
