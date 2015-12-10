@@ -1,2 +1,3 @@
 *.pyc
 .issue2branch.config
+.idea/*
