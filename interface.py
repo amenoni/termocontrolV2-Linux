@@ -21,3 +21,6 @@ def waitingTempMode(temp):
 
 def prepareUsageMode(temp):
     sendMailbox("mode prepare_usage " + str(temp))
+
+def updateTemp():
+    sendMailbox("updateTemp")
