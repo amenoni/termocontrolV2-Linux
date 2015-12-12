@@ -1,20 +1,8 @@
 #!/usr/bin/python
-import os
 import sys
-import memcache
-from sqlalchemy import Column,Integer, String, DateTime, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.sql import func
-
-Base = declarative_base()
-
-class tempLog(Base):
-    __tablename__ = 'tempLog'
-    timestamp_UTC = Column(DateTime(), default=func.now(), primary_key=True)
-    temp = Column(Integer, nullable=False)
-    synchronized = Column(Boolean,nullable=False, default=False)
+from data.templog import tempLog
+import session_manager
+import memcache_manager
 
 '''
 Save the current temp sended by the arduino in a key named "CurrentTemp" in the memcached service
@@ -25,17 +13,13 @@ If the new temp value is diferent of the last sended we log the current temp in 
 '''
 
 CurrentTemp = sys.argv[1]
-mc = memcache.Client(['127.0.0.1:11211'], debug=0)
+mc = memcache_manager.getMemCache()
 
-engine = create_engine('sqlite:///termocontrol.db')
-Base.metadata.create_all(engine)
 
 if(CurrentTemp != mc.get('CurrentTemp')):
     #set the new value in the memcache
     mc.set('CurrentTemp', CurrentTemp)
-    Base.metadata.bind = engine
-    DBSession = sessionmaker(bind=engine)
-    session = DBSession()
+    session = session_manager.getSession()
     newLog = tempLog(temp=CurrentTemp)
     session.add(newLog)
     session.commit()
