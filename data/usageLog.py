@@ -2,6 +2,7 @@ from sqlalchemy import Column,Integer, DateTime, Boolean
 from sqlalchemy.sql import func
 import datetime
 import session_manager
+import radar
 
 Base = session_manager.getBase()
 
@@ -22,3 +23,9 @@ class usageLog(Base):
         self.weekday = self.timestamp_UTC.weekday()
         self.type = type
         self.synchronized = synchronized
+
+
+    def generatRandomTimeValues(self): #use it only to generate testing usageLog data
+        self.timestamp_UTC = radar.random_date(datetime.datetime.now(), datetime.datetime.now() + datetime.timedelta(days=7))
+        self.hour = self.timestamp_UTC.hour
+        self.weekday = self.timestamp_UTC.weekday()
