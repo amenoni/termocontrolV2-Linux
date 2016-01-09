@@ -13,7 +13,7 @@ const int USAGE_FINISHED = 1;
 
 usageType = sys.argv[1]
 
-usage = usageLog(type=usageType)
+usage = usageLog(usageType,False)
 session = session_manager.getSession()
 session.add(usage)
 session.commit()

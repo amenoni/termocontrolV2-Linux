@@ -1,5 +1,4 @@
 from sqlalchemy import Column,Integer, DateTime, Boolean
-from sqlalchemy.sql import func
 import datetime
 import session_manager
 import radar
