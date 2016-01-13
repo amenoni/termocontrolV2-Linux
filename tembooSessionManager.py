@@ -1,9 +1,10 @@
 from temboo.Library.Google.Spreadsheets import AppendRow
 from temboo.core.session import TembooSession
 from data import usageLog
+import credentials
 
 # Create a session with your Temboo account details
-session = TembooSession("amenoni", "myFirstApp", "K8wciklnjD6zUZ54fdLLQRkkYBzqx1lm")
+session = TembooSession(credentials.tembooUser, credentials.tembooAppName, credentials.tembooKey)
 
 
 
@@ -16,9 +17,9 @@ def send_tempLog(timestamp,temp):
     # Set the Choreo inputs
     appendRowInputs.set_RowData(str(timestamp) + "," + str(temp))
     appendRowInputs.set_SpreadsheetTitle("TempLog")
-    appendRowInputs.set_RefreshToken("1/Y2R1hcipKoRzzV2r5p8Y-X1YIxDSkFoBXIyHqnMLzP0")
-    appendRowInputs.set_ClientSecret("heuDjDIkCkjOak1XiZI8prat")
-    appendRowInputs.set_ClientID("579401794380-3i17seip6c2b544q92ngnjcbk3ccidsd.apps.googleusercontent.com")
+    appendRowInputs.set_RefreshToken(credentials.googleAppRefreshToken)
+    appendRowInputs.set_ClientSecret(credentials.googleAppClientSecret)
+    appendRowInputs.set_ClientID(credentials.googleAppClientID)
 
     # Execute the Choreo
     appendRowResults = appendRowChoreo.execute_with_results(appendRowInputs)
@@ -37,9 +38,10 @@ def send_usageLog(usage):
     # Set the Choreo inputs
     appendRowInputs.set_RowData(str(usage.timestamp_UTC) + "," + str(usage.hour) + "," + str(usage.weekday) + "," + str(usage.type))
     appendRowInputs.set_SpreadsheetTitle("UsageLog")
-    appendRowInputs.set_RefreshToken("1/Y2R1hcipKoRzzV2r5p8Y-X1YIxDSkFoBXIyHqnMLzP0")
-    appendRowInputs.set_ClientSecret("heuDjDIkCkjOak1XiZI8prat")
-    appendRowInputs.set_ClientID("579401794380-3i17seip6c2b544q92ngnjcbk3ccidsd.apps.googleusercontent.com")
+    appendRowInputs.set_RefreshToken(credentials.googleAppRefreshToken)
+    appendRowInputs.set_ClientSecret(credentials.googleAppClientSecret)
+    appendRowInputs.set_ClientID(credentials.googleAppClientID)
+
 
     # Execute the Choreo
     appendRowResults = appendRowChoreo.execute_with_results(appendRowInputs)
