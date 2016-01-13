@@ -1,4 +1,4 @@
 *.pyc
 .issue2branch.config
 .idea/*
-.credentials.py
+credentials.py
