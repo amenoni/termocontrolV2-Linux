@@ -3,6 +3,8 @@ import sys
 from data.templog import tempLog
 import session_manager
 import memcache_manager
+import datetime
+from tembooSessionManager import send_tempLog
 
 '''
 Save the current temp sended by the arduino in a key named "CurrentTemp" in the memcached service
@@ -23,3 +25,4 @@ if(CurrentTemp != mc.get('CurrentTemp')):
     newLog = tempLog(temp=CurrentTemp)
     session.add(newLog)
     session.commit()
+    send_tempLog(datetime.datetime.now(),CurrentTemp)
