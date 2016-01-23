@@ -16,6 +16,6 @@ def getSession():
     return session
 
 def createTables():
-    from data import templog,usageLog,statistics
+    from data import templog,usageLog,statistics,hwConfig
     Base.metadata.create_all(engine)
 
