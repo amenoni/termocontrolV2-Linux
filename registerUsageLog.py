@@ -2,7 +2,6 @@
 import sys
 from data.usageLog import usageLog
 import session_manager
-from tembooSessionManager import send_usageLog
 
 """
 The arduino sends this parameters to this command
@@ -18,5 +17,5 @@ usage = usageLog(usageType,False)
 session = session_manager.getSession()
 session.add(usage)
 session.commit()
-send_usageLog(usage)
+
 
