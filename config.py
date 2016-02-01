@@ -1,4 +1,4 @@
-#DBpath = 'sqlite:////mnt/sda1/arduino/termocontrol.db'
+#DBpath = 'sqlite:////mnt/sda1/termocontrol.db'
 DBpath = 'sqlite:////Users/amenoni/Desarrollo/TermocontrolV2/termocontrol.db'
 apiURL = 'http://192.168.1.107:8000/api/v1'
 maxTemp = 50 #todo construct this value from usageLog or get it from arduino
