@@ -4,6 +4,7 @@ import interface
 import config
 import  memcache_manager
 from data import statistics
+from network.sendData import sendTempLogs
 
 '''
 MemCache values
@@ -59,3 +60,5 @@ else:#if there's no statistics
 
 
 interface.updateTemp() # ask the arduino to retrive the current temp value for logging proposes
+#send Temp Logs to the webserver
+sendTempLogs()
