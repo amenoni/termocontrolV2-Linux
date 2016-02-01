@@ -2,6 +2,7 @@
 import sys
 from data.usageLog import usageLog
 import session_manager
+from network.sendData import sendUsageLogs
 
 """
 The arduino sends this parameters to this command
@@ -17,5 +18,5 @@ usage = usageLog(usageType,False)
 session = session_manager.getSession()
 session.add(usage)
 session.commit()
-
+sendUsageLogs()
 
