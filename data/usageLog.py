@@ -5,10 +5,12 @@ import radar
 
 Base = session_manager.getBase()
 
-USAGE_STARTED = 0
-USAGE_FINISHED = 1
+
 
 class usageLog(Base):
+    USAGE_STARTED = 0
+    USAGE_FINISHED = 1
+
     __tablename__ = 'usageLog'
     timestamp_UTC = Column(DateTime(), primary_key=True)
     hour = Column(Integer,nullable=False)
