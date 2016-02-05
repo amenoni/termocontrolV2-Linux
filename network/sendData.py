@@ -34,7 +34,13 @@ def sendUsageLogs():
     url = "%s/usagelogs/?format=json" % config.apiURL
     headers = {'Content-Type': 'application/json'}
     for log in unsincronized_logs:
-        data = '{"hour": "%s", "timestamp_UTC":"%s","weekday":"%s"}' %(log.hour, log.timestamp_UTC,log.weekday)
+        usageType = "nd"
+        if log.type == usageLog.USAGE_STARTED:
+            usageType = "st"
+        elif log.type == usageLog.USAGE_FINISHED:
+            usageType = "fn"
+
+        data = '{"hour": "%s", "timestamp_UTC":"%s","weekday":"%s","type":"%s"}' %(log.hour, log.timestamp_UTC,log.weekday,usageType)
         try:
             r = requests.post(url,headers=headers, data=data)
             log.synchronized = True
