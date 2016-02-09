@@ -6,6 +6,7 @@ import requests
 
 
 
+
 session = session_manager.getSession()
 
 
@@ -17,7 +18,7 @@ def sendTempLogs():
     headers = {'Content-Type': 'application/json'}
 
     for log in unsincronized_logs:
-        data = '{"temp": "%s", "timestamp_UTC":"%s"}' %(log.temp, log.timestamp_UTC)
+        data = '{"temp": "%s", "timestamp_UTC":"%s"}' %(log.temp, log.timestamp)
         try:
             r = requests.post(url,headers=headers, data=data)
             log.synchronized = True
@@ -40,7 +41,7 @@ def sendUsageLogs():
         elif log.type == usageLog.USAGE_FINISHED:
             usageType = "fn"
 
-        data = '{"hour": "%s", "timestamp_UTC":"%s","weekday":"%s","type":"%s"}' %(log.hour, log.timestamp_UTC,log.weekday,usageType)
+        data = '{"hour": "%s", "timestamp_UTC":"%s","weekday":"%s","type":"%s"}' %(log.hour, log.timestamp,log.weekday,usageType)
         try:
             r = requests.post(url,headers=headers, data=data)
             log.synchronized = True
