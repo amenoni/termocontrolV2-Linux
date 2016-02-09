@@ -21,6 +21,6 @@ if(CurrentTemp != mc.get('CurrentTemp')):
     #set the new value in the memcache
     mc.set('CurrentTemp', CurrentTemp)
     session = session_manager.getSession()
-    newLog = tempLog(temp=CurrentTemp)
+    newLog = tempLog(CurrentTemp)
     session.add(newLog)
     session.commit()
