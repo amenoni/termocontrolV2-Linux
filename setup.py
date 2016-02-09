@@ -14,7 +14,7 @@ generateStatisticsJob = cron.new('%s %s/generateLocalStatics.py' % (pythonPath,f
 generateStatisticsJob.hour.on(0)
 
 checkSystemJob = cron.new('%s %s/systemCheck.py' % (pythonPath,files_dir))
-checkSystemJob.minute.every(5)
+checkSystemJob.minute.every(1)
 cron.write()
 
 #create the database and the tables
